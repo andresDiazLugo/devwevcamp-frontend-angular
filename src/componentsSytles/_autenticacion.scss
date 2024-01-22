@@ -1,0 +1,33 @@
+@use '../base/variables' as v;
+@use '../base/mixins' as m;
+#sectionContainer{
+    max-width: 70rem;
+    margin: 10rem auto auto auto;
+    #containerTitle{
+        h2{
+            color: v.$negro;
+            font-weight: 700;
+            font-size: 3rem;
+            text-align: center
+        }
+       
+    }
+    #containerBtn{
+        display: flex;
+        justify-content: center;
+        button{
+            @include m.boton(v.$blue, v.$white);
+
+        }
+    }
+    .containerLinks{
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+        @include m.tablet{
+            flex-direction:row;
+            justify-content: space-between;
+        } 
+    }
+}
