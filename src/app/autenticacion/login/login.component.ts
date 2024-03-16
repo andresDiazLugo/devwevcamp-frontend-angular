@@ -10,5 +10,8 @@ import { RouterLink } from '@angular/router';
     imports: [InputComponent,RouterLink]
 })
 export class LoginComponent {
-
+    // count:number = 0;
+    // onButtonClick(){
+    //     this.count += 1;
+    // }
 }

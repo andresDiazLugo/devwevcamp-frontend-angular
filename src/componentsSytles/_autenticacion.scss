@@ -30,4 +30,11 @@
             justify-content: space-between;
         } 
     }
+    #containerErrors{
+        background-color: red;
+        text-align: center;
+        color: v.$white;
+        padding: 1rem;
+        margin-top: 4px;
+    }
 }

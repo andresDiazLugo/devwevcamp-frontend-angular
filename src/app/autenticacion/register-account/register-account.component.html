@@ -1,16 +1,42 @@
-<section id="sectionContainer">
+<form [formGroup]="myForm" id="sectionContainer" (ngSubmit)="onSubmit()">
     <div id="containerTitle">
         <h2>Registra una cuenta en DevWebcamp</h2>
     </div>
-    <app-input [title]='"Name"' [inputType]='"text"' [namePlaceHolder]='"Tu nombre"'></app-input>
-    <app-input [title]='"phone"' [inputType]='"text"' [namePlaceHolder]='"Tu telefono"'></app-input>
-    <app-input [title]='"Email"' [inputType]='"email"' [namePlaceHolder]='"Tu email"'></app-input>
-    <app-input [title]='"Password"' [inputType]='"Password"' [namePlaceHolder]='"Tu Password"'></app-input>
+    <div id="containerErrors" *ngIf="getErrors('name').length > 0">
+        <div *ngFor="let error of getErrors('name')">
+          {{ error }}
+        </div>
+    </div>
+    <div id="containerErrors" *ngIf="getErrors('email').length > 0">
+        <div *ngFor="let error of getErrors('email')">
+          {{ error }}
+        </div>
+        <div *ngIf="myForm.controls['email'].hasError('serverError')">
+          {{ myForm.controls['email'].getError('serverError') }}
+        </div>
+    </div>
+    <div id="containerErrors"  *ngIf="getErrors('phone').length > 0">
+      <div *ngFor="let error of getErrors('phone')">
+        {{ error }}
+      </div>
+    </div>
+    <div id="containerErrors" *ngIf="getErrors('password').length > 0">
+      <div *ngFor="let error of getErrors('password')">
+        {{ error }}
+      </div>
+    </div>
+    <!-- <div id="containerErrors" *ngIf="myForm.controls['email'].hasError('serverError')">
+    
+    </div> -->
+    <app-input [title]='"Name"' [inputType]='"text"' [namePlaceHolder]='"Tu nombre"' formvalue="name" (inputsChanges)="captureValues('name',$event)" (confirTouch)="reciveBoolean('name',$event)" ></app-input>
+    <app-input [title]='"Email"' [inputType]='"email"' [namePlaceHolder]='"Tu email"' formvalue="email" (inputsChanges)="captureValues('email',$event)" (confirTouch)="reciveBoolean('email',$event)"></app-input>
+    <app-input [title]='"Phone"' [inputType]='"text"' [namePlaceHolder]='"Tu telefono"' formvalue="phone" (inputsChanges)="captureValues('phone',$event)" (confirTouch)="reciveBoolean('phone',$event)"></app-input>
+    <app-input [title]='"Password"' [inputType]='"password"' [namePlaceHolder]='"Tu password"' formvalue="password" (inputsChanges)="captureValues('password',$event)" (confirTouch)="reciveBoolean('password',$event)"></app-input> 
     <div id="containerBtn">
-        <button>Crear Cuenta</button>
+        <button >Crear Cuenta</button>
     </div>
     <div class="containerLinks">
         <a routerLink="/login">¿Ya tienes cuenta? Iniciar Sesion</a>
         <a >¿Olvidaste tu Password?</a>
-    </div>
-</section>
+    </div>  
+</form>
